@@ -4,6 +4,7 @@ import { registerUser } from '../services/authService'
 import { FirebaseError } from 'firebase/app'
 
 interface RegisterFormProps {
+  onRegister: (email: string, password: string) => Promise<void>
   onClose: () => void
 }
 

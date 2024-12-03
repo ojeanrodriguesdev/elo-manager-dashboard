@@ -6,9 +6,10 @@ import RegisterForm from './RegisterForm'
 
 interface LoginFormProps {
   onLogin: (email: string, password: string) => Promise<void>
+  onRegister: (email: string, password: string) => Promise<void>
 }
 
-export default function LoginForm({ onLogin }: LoginFormProps) {
+export default function LoginForm({ onLogin, onRegister }: LoginFormProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -29,7 +30,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
       if (err instanceof FirebaseError) {
         setError(err.message) // Define a mensagem de erro centralizada no hook
       } else {
-        setError('Ocorreu um erro desconhecido.')
+        setError('Email ou senhas estão incorretos.')
       }
     }
   }
@@ -76,7 +77,9 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
       </form>
 
       <Modal isOpen={isRegisterModalOpen} onClose={() => setIsRegisterModalOpen(false)}>
-        <RegisterForm onClose={() => setIsRegisterModalOpen(false)} />
+        <RegisterForm 
+          onRegister={onRegister} 
+          onClose={() => setIsRegisterModalOpen(false)} />
       </Modal>
     </>
   )

@@ -15,7 +15,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200">
-      <RegisterForm onRegister={handleRegister} />
+      <RegisterForm onRegister={handleRegister} onClose={() => console.log('Modal fechado')}/>
     </div>
   )
 }
